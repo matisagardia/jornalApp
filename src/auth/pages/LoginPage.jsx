@@ -3,24 +3,15 @@ import { Button, Grid, Link, TextField } from "@mui/material";
 import { Typography } from "@mui/material";
 import { height } from "@mui/system";
 import { Link as RouterLink} from "react-router-dom";
+import { AuthLayout } from "../layout/AuthLayout";
 
 
 export const LoginPage = () => {
     
   return (
-    <Grid
-    container
-    spacing={0} 
-    justifyContent="center" 
-    alignContent='center'
-    sx={{minHeight: '100vh',backgroundColor: 'primary.main', padding: 4}}>
 
-      <Grid item 
-      className="box-shadow"
-      sx={{backgroundColor: 'white', padding: 3, borderRadius: 2, width:'50vh'}}>
-
-        <Typography variant="h5" sx={{mb: 1}}>Login</Typography>
-        
+      <AuthLayout title="Login">
+          
         <form action="">
 
           <Grid container gap={2}>
@@ -68,9 +59,7 @@ export const LoginPage = () => {
 
         </form>
 
-      </Grid>
+      </AuthLayout>
 
-
-    </Grid>
   )
 }
