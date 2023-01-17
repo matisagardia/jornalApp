@@ -3,7 +3,6 @@ import { MailOutline } from '@mui/icons-material'
 import { JournalLayout } from "../layout/JournalLayout"
 
 
-const drawerWidth = 240;
 
 export const JournalPage = () => {
 
