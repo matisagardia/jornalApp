@@ -1,18 +1,37 @@
-import { Google } from "@mui/icons-material";
 import { Button, Grid, Link, TextField } from "@mui/material";
-import { Typography } from "@mui/material";
-import { height } from "@mui/system";
 import { Link as RouterLink} from "react-router-dom";
+import { useForm } from "../../hooks/useForm";
 import { AuthLayout } from "../layout/AuthLayout";
 
+const formValidations = {
+  email: [(value) => value.includes('@'), 'The mail is incorrect'],
+  displayName: [(value) => value.length <= 1, 'The name needs to be longer than 1 character'],
+  displayLastName: [(value) => value.length <= 1, 'The last name needs to be longer than 1 character'],
+  password: [(value) => value.length <= 6, 'The password needs to be longer than 6 characters'],
+};
 
 export const RegisterPage = () => {
+
+  const {displayName, displayLastName, email, isFormValid, displayNameValid, emailValid, passwordValid, displayLastNameValid,
+         password, onInputChange, formState} = useForm( {
+
+    email:'',
+    password: '',
+    displayName: '',
+    displayLastName: ''
+
+  }, formValidations );
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(formState);
+  }
     
   return (
 
       <AuthLayout title="Register Account">
-            
-        <form action="">
+
+        <form onSubmit={onSubmit}>
 
           <Grid container gap={2}>
 
@@ -21,7 +40,11 @@ export const RegisterPage = () => {
               label="Name" 
               type="text" 
               placeholder="Insert your name" 
-              fullWidth/>
+              fullWidth
+              name="displayName"
+              value={displayName}
+              onChange={onInputChange}
+              error={!formValidations.email}/>
             </Grid>
 
             <Grid item xs={12}>
@@ -29,7 +52,10 @@ export const RegisterPage = () => {
               label="Last Name" 
               type="text" 
               placeholder="Insert your last name" 
-              fullWidth/>
+              fullWidth
+              name="displayLastName"
+              value={displayLastName}
+              onChange={onInputChange}/>
             </Grid>
 
             <Grid item xs={12}>
@@ -37,7 +63,10 @@ export const RegisterPage = () => {
               label="E-mail" 
               type="email" 
               placeholder="mail@google.com" 
-              fullWidth/>
+              fullWidth
+              name="email"
+              value={email}
+              onChange={onInputChange}/>
             </Grid>
 
             <Grid item xs={12}>
@@ -45,21 +74,19 @@ export const RegisterPage = () => {
               label="Password" 
               type="password" 
               placeholder="Insert your password" 
-              fullWidth/>
+              fullWidth
+              name="password"
+              value={password}
+              onChange={onInputChange}/>
             </Grid>
 
-            <Grid item xs={12}>
-              <TextField 
-              label="Repeat your password" 
-              type="password" 
-              placeholder="Password" 
-              fullWidth/>
-            </Grid>
-            
             <Grid container spacing={2} justifyContent='center'>
 
               <Grid item xs={12} sm={12} >
-                <Button variant="contained" fullWidth>
+                <Button 
+                  type="submit"
+                  variant="contained" 
+                  fullWidth>
                   Register
                 </Button>
                 </Grid>
