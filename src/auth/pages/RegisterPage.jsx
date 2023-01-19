@@ -11,7 +11,7 @@ export const RegisterPage = () => {
   return (
 
       <AuthLayout title="Register Account">
-          
+            
         <form action="">
 
           <Grid container gap={2}>
