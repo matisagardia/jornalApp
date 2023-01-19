@@ -22,7 +22,6 @@ export const RegisterPage = () => {
 
   }, formValidations );
 
-  console.log(displayLastNameValid)
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -46,7 +45,7 @@ export const RegisterPage = () => {
               name="displayName"
               value={displayName}
               onChange={onInputChange}
-              error={!formValidations.email}/>
+              />
             </Grid>
 
             <Grid item xs={12}>
