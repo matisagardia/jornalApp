@@ -5,9 +5,9 @@ import { AuthLayout } from "../layout/AuthLayout";
 
 const formValidations = {
   email: [(value) => value.includes('@'), 'The mail is incorrect'],
-  displayName: [(value) => value.length <= 1, 'The name needs to be longer than 1 character'],
-  displayLastName: [(value) => value.length <= 1, 'The last name needs to be longer than 1 character'],
-  password: [(value) => value.length <= 6, 'The password needs to be longer than 6 characters'],
+  displayName: [(value) => value.length >= 1, 'The name needs to be longer than 1 character'],
+  displayLastName: [(value) => value.length >= 1, 'The last name needs to be longer than 1 character'],
+  password: [(value) => value.length >= 6, 'The password needs to be longer than 6 characters'],
 };
 
 export const RegisterPage = () => {
@@ -21,6 +21,8 @@ export const RegisterPage = () => {
     displayLastName: ''
 
   }, formValidations );
+
+  console.log(displayLastNameValid)
 
   const onSubmit = (e) => {
     e.preventDefault();
