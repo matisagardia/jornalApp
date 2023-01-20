@@ -1,17 +1,17 @@
 import { Google } from "@mui/icons-material";
-import { Button, Grid, Link, TextField } from "@mui/material";
+import { Alert, Button, Grid, Link, TextField } from "@mui/material";
 import { Typography } from "@mui/material";
 import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link as RouterLink} from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
-import { checkingAuthentication, startGoogleSignIn } from "../../store/auth/thunks";
+import { startEmailPasswordSignIn, startGoogleSignIn } from "../../store/auth/thunks";
 import { AuthLayout } from "../layout/AuthLayout";
 
 
 export const LoginPage = () => {
 
-  const {status} = useSelector(state => state.auth);
+  const {status, errorMessage} = useSelector(state => state.auth);
 
   const isAuthenticating = useMemo( () => status === 'checking', [status]);
 
@@ -25,12 +25,10 @@ export const LoginPage = () => {
   } );
 
 
-
   const onSubmit = (e) => {
 
     e.preventDefault();
-    console.log({email, password})
-    dispatch(checkingAuthentication());
+    dispatch(startEmailPasswordSignIn({email, password}));
 
   };
 
@@ -71,6 +69,10 @@ export const LoginPage = () => {
             </Grid>
             
             <Grid container spacing={2} justifyContent='center'>
+
+            <Grid item xs={12} display={!!errorMessage ? '' : 'none'}>
+              <Alert severity="error">{errorMessage}</Alert>
+            </Grid>
 
               <Grid item xs={12} sm={6} >
                 <Button 
