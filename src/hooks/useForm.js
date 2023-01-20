@@ -9,11 +9,14 @@ export const useForm = ( initialForm = {}, formValidations = {}) => {
       createValidators();
     }, [formState]);
 
-    const isFormValid = () => {
+    const isFormValid = useMemo(() => {
+
         for (const formValue of Object.keys(formValidation)) {
             if(formValidation[formValue] !== null) return false;
         };
-    };
+        return true;
+
+    }, [formValidation]);
 
     const onInputChange = ({ target }) => {
         const { name, value } = target;
@@ -21,11 +24,11 @@ export const useForm = ( initialForm = {}, formValidations = {}) => {
             ...formState,
             [ name ]: value
         });
-    }
+    };
 
     const onResetForm = () => {
         setFormState( initialForm );
-    }
+    };
 
     const createValidators = () => {
         const formCheckedValues = {};
@@ -34,9 +37,8 @@ export const useForm = ( initialForm = {}, formValidations = {}) => {
             const [fn, errorMessage = 'Invalid input'] = formValidations[formField];
             formCheckedValues[`${ formField }Valid`] = fn( formState[formField] ) ? null : errorMessage;
         };
-
-        console.log(formCheckedValues)
         setformValidation(formCheckedValues);
+
     };
 
     return {
