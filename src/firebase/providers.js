@@ -78,3 +78,9 @@ export const registerUserWithEmailPassword = async ({email, password, displayNam
 
     };
 };
+
+export const logoutFirebase = async() => {
+
+    return await FirebaseAuth.signOut();
+
+}

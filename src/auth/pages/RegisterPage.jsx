@@ -50,7 +50,9 @@ export const RegisterPage = () => {
 
         <form onSubmit={onSubmit}>
 
-          <Grid container gap={2}>
+          <Grid 
+          className="animate__animated animate__fadeIn animate__faster"
+          container gap={2}>
 
             <Grid item xs={12}>
               <TextField 

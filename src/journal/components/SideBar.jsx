@@ -2,10 +2,15 @@ import { Divider, Drawer, Grid, ListItem, ListItemButton, ListItemIcon, ListItem
 import { Box } from "@mui/system"
 import {List} from "@mui/material"
 import { TurnedInNot } from "@mui/icons-material"
+import { useSelector } from "react-redux"
 
 
 
 export const SideBar = ({drawerWidth}) => {
+
+    const {displayName} = useSelector(state => state.auth);
+
+
   return (
     <Box component='nav' sx={{width: { sm:drawerWidth }, flexShrink: {sm: 0}}}>
 
@@ -20,7 +25,7 @@ export const SideBar = ({drawerWidth}) => {
 
             <Toolbar>
 
-                <Typography variant="h6" noWrap component='div'>Matias Sagardia</Typography>
+                <Typography variant="h6" noWrap component='div'>{displayName}</Typography>
 
             </Toolbar>
 
