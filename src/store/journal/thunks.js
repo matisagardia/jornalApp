@@ -44,3 +44,8 @@ export const startLoadingNotes = () => {
     }
 }
 
+export const setNoteActive = () => {
+    return async (dispatch) => {
+
+    }
+}
