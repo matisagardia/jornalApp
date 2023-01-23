@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux"
 import { setActiveNote } from "../../store/journal/journalSlice";
 
 
-export const SideBarItem = ({title, body, id, date, imageUrls}) => {
+export const SideBarItem = ({title = '', body, id, date, imageUrls = []}) => {
 
     const dispatch = useDispatch();
 
@@ -12,9 +12,7 @@ export const SideBarItem = ({title, body, id, date, imageUrls}) => {
         dispatch(setActiveNote({title, body, id, date, imageUrls}))
     }
 
-    const newTitle = title.length > 17 ? title.substring(0, 17) + '...' : title;
-
-
+    const newTitle = title?.length > 17 ? title.substring(0, 17) + '...' : title;
 
   return (
                     <ListItem disablePadding>
